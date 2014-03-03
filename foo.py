@@ -1,5 +1,6 @@
 import os
 import platform as plat
+import sys
 if str(plat.system()) == "Windows":
 	slash = "\\"
 else:
@@ -20,7 +21,7 @@ for root, dirs, files in os.walk(loc):
 		elif foo[:3] == "foo":
 			continue
 		else:
-			print "File " + root + slash + foo
+			sys.stdout.write("File " + root + slash + foo)
 			work = True
 			try:
 				num += 1
@@ -34,10 +35,10 @@ for root, dirs, files in os.walk(loc):
 				filec[foo] = "foo" + str(num) + "." + str(ext)
 			except Exception:
 				num += 1
-				print "> " + str(num)
-				print "> File " + root + slash + foo + ' exists.'
-print "\n" + str(filenum) + " files were changed."
-print "Files: "
+				sys.stdout.write("> " + str(num) + "\n")
+				sys.stdout.write("> File " + root + slash + foo + ' exists.\n')
+sys.stdout.write("\n" + str(filenum) + " files were changed.\n")
+sys.stdout.write("Files: \n")
 for item in fileli:
-	print "\t" + item + " -->",
-	print filec[item]
+	sys.stdout.write("\t" + item + " -->")
+	sys.stdout.write(filec[item] + "\n")
